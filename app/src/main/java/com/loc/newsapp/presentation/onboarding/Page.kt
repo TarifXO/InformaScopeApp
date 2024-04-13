@@ -12,21 +12,21 @@ data class Page(
 val pages = listOf(
 
     Page(
-        title = "he is simply dummy",
-        description = "dummy in many aspects of life",
-        image = R.drawable.onboarding1
+        title = "News",
+        description = "We make sure to provide the most recent and important news from the best possible sources.",
+        image = R.drawable.news_wallpaper2
     ),
 
     Page(
-        title = "he is simply dummy",
-        description = "dummy in many aspects of life",
-        image = R.drawable.onboarding2
+        title = "Search",
+        description = "Feel comfortable searching for different topics that may concern you and match your interest.",
+        image = R.drawable.search_wallpaper
     ),
 
     Page(
-        title = "he is simply dummy",
-        description = "dummy in many aspects of life",
-        image = R.drawable.onboarding3
+        title = "Bookmark",
+        description = "Save your favourite articles so you can check it later or share it with family and friends.",
+        image = R.drawable.bookmark_wallpaper
     )
 
 )
