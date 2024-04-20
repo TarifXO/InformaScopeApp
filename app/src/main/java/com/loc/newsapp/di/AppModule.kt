@@ -5,10 +5,10 @@ import androidx.room.Room
 import com.loc.newsapp.data.local.NewsDao
 import com.loc.newsapp.data.local.NewsDatabase
 import com.loc.newsapp.data.local.NewsTypeConverter
-import com.loc.newsapp.data.manager.LocalUserManagerImpl
+import com.loc.newsapp.data.repository.manager.LocalUserManagerImpl
 import com.loc.newsapp.data.remote.NewsApi
 import com.loc.newsapp.data.repository.NewsRepositoryImpl
-import com.loc.newsapp.domain.manager.LocalUserManager
+import com.loc.newsapp.domain.repository.manager.LocalUserManager
 import com.loc.newsapp.domain.repository.NewsRepository
 import com.loc.newsapp.domain.useCases.appEntry.AppEntryUseCases
 import com.loc.newsapp.domain.useCases.appEntry.ReadAppEntry

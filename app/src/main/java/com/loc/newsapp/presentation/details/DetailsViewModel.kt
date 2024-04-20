@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.loc.newsapp.domain.manager.LocalUserManager
+import com.loc.newsapp.domain.repository.manager.LocalUserManager
 import com.loc.newsapp.domain.model.Article
 import com.loc.newsapp.domain.useCases.news.NewsUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
