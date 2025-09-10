@@ -2,7 +2,6 @@ package com.loc.newsapp.presentation.details
 
 import android.content.Intent
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,6 +33,8 @@ import com.loc.newsapp.ui.theme.NewsAppTheme
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.loc.newsapp.presentation.notifications.NotificationHelper
+import androidx.core.net.toUri
 
 @Composable
 fun DetailsScreen(
@@ -53,7 +54,7 @@ fun DetailsScreen(
         DetailsTopBar(
             onBrowsingClick = {
                 Intent(Intent.ACTION_VIEW).also {
-                    it.data = Uri.parse(article.url)
+                    it.data = article.url.toUri()
                     if (it.resolveActivity(context.packageManager) != null) {
                         context.startActivity(it)
                     }
@@ -71,6 +72,9 @@ fun DetailsScreen(
             onBookmarkClick = {
                 event(DetailsEvent.UpsertDeleteArticle(article = article))
                 viewModel.toggleBookmark(article.url)
+                if (!isBookmarked) {
+                    NotificationHelper.showBookmarkNotification(context, article.title)
+                }
             },
             onBackClick = navigateUp,
             isBookmarked = isBookmarked

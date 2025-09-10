@@ -1,15 +1,14 @@
 package com.loc.newsapp.presentation.details
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.loc.newsapp.domain.repository.manager.LocalUserManager
 import com.loc.newsapp.domain.model.Article
+import com.loc.newsapp.domain.repository.manager.LocalUserManager
 import com.loc.newsapp.domain.useCases.news.NewsUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,8 +19,8 @@ class DetailsViewModel @Inject constructor(
     private val userManager: LocalUserManager
 ) : ViewModel() {
 
-    var sideEffect by mutableStateOf<String?>(null)
-        private set
+    private val _sideEffect = MutableStateFlow<String?>(null)
+    val sideEffect: StateFlow<String?> = _sideEffect
 
     fun onEvent(event: DetailsEvent) {
         when(event) {
@@ -36,7 +35,7 @@ class DetailsViewModel @Inject constructor(
                 }
             }
             is DetailsEvent.RemoveSideEffect -> {
-                sideEffect = null
+                _sideEffect.value = null
             }
 
         }
@@ -59,11 +58,11 @@ class DetailsViewModel @Inject constructor(
 
     private suspend fun upsertArticle(article: Article) {
         newsUseCases.upsertArticle(article = article)
-        sideEffect = "Article Saved"
+        _sideEffect.value = "Article Saved"
     }
 
     private suspend fun deleteArticle(article: Article) {
         newsUseCases.deleteArticle(article = article)
-        sideEffect = "Article Removed"
+        _sideEffect.value = "Article Removed"
     }
 }

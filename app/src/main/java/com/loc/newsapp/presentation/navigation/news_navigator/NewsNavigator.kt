@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -191,8 +192,9 @@ fun NewsNavigator() {
                 }
             ) {
                 val viewModel: DetailsViewModel = hiltViewModel()
-                if (viewModel.sideEffect != null) {
-                    Toast.makeText(LocalContext.current, viewModel.sideEffect, Toast.LENGTH_SHORT).show()
+                val sideEffect by viewModel.sideEffect.collectAsState()
+                if (sideEffect != null) {
+                    Toast.makeText(LocalContext.current, sideEffect, Toast.LENGTH_SHORT).show()
                     viewModel.onEvent(DetailsEvent.RemoveSideEffect)
                 }
 

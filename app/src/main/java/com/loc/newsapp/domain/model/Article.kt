@@ -16,4 +16,16 @@ data class Article(
     val title: String,
     @PrimaryKey val url: String,
     val urlToImage: String
-) : Parcelable
+) : Parcelable {
+    //Testing purpose
+    companion object {
+        val DIFF_CALLBACK = object : androidx.recyclerview.widget.DiffUtil.ItemCallback<Article>() {
+            override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean =
+                oldItem.url == newItem.url
+
+            override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean =
+                oldItem == newItem
+        }
+    }
+
+}
